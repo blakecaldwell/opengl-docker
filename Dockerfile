@@ -8,26 +8,19 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
     apt-get upgrade -y
 
-RUN apt-get install -y \
+RUN apt-get install --no-install-recommends -y \
     wget \
     bzip2 \
     curl \
     git \
     sudo \
     vim \
-    xvfb \
-    llvm-5.0 \
-    x11-utils \
     llvm-5.0-dev \
-    zlib1g \
     zlib1g-dev \
     xserver-xorg-dev \
     build-essential \
     python-dev \
-    freeglut3 \
-    libxcb-dri2-0 \
     libxcb-dri2-0-dev \
-    libxcb-xfixes0 \
     libxcb-xfixes0-dev \
     libxext-dev \
     libx11-xcb-dev \
@@ -59,7 +52,7 @@ RUN update-alternatives --install \
 RUN set -xe; \
     mkdir -p /var/tmp/build; \
     cd /var/tmp/build; \
-    wget -q "https://mesa.freedesktop.org/archive/mesa-18.0.1.tar.gz"; \
+    wget -q --no-check-certificate "https://mesa.freedesktop.org/archive/mesa-18.0.1.tar.gz"; \
     tar xf mesa-18.0.1.tar.gz; \
     rm mesa-18.0.1.tar.gz; \
     cd mesa-18.0.1; \
