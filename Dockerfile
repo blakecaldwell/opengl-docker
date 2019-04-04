@@ -26,7 +26,9 @@ RUN apt-get install -y \
     python-dev \
     freeglut3 \
     libxcb-dri2-0 \
-    libxfixes3 \
+    libxcb-dri2-0-dev \
+    libxcb-xfixes0 \
+    libxcb-xfixes0-dev \
     libxext-dev \
     libx11-xcb-dev \
     pkg-config
@@ -73,7 +75,9 @@ RUN set -xe; \
             python-dev \
             pkg-config \
             libxext-dev \
-            libx11-xcb-dev
+            libx11-xcb-dev \
+            libxcb-xfixes0-dev \
+            libxcb-dri2-0-dev
 
 RUN sudo apt autoremove --purge && sudo apt clean
 
