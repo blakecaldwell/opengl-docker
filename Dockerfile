@@ -79,7 +79,7 @@ RUN set -xe; \
             libxcb-xfixes0-dev \
             libxcb-dri2-0-dev
 
-RUN sudo apt autoremove --purge && sudo apt clean
+RUN sudo apt autoremove -y --purge && sudo apt clean
 
 # Setup our environment variables.
 ENV XVFB_WHD="1920x1080x24"\
