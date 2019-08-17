@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:19.04
 
 # inspiration from https://github.com/utensils/docker-opengl/
 
