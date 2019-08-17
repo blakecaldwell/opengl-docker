@@ -16,6 +16,7 @@ RUN apt-get update && \
     sudo \
     vim \
     python \
+    libllvm6.0 \
     llvm-6.0-dev \
     zlib1g-dev \
     xserver-xorg-dev \
@@ -23,8 +24,10 @@ RUN apt-get update && \
     python3-dev \
     libxcb-dri2-0-dev \
     libxcb-xfixes0-dev \
+    libxkbcommon-x11-0 \
     libxext-dev \
     libx11-xcb-dev \
+    libqt5core5a \
     pkg-config && \
     update-alternatives --install \
         /usr/bin/llvm-config       llvm-config      /usr/bin/llvm-config-6.0  200 \
