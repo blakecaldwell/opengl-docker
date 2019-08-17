@@ -5,10 +5,10 @@ FROM ubuntu:19.04
 # avoid questions from debconf
 ENV DEBIAN_FRONTEND noninteractive
 
+# install and remove packages in one layer
 RUN apt-get update && \
-    apt-get upgrade -y
-
-RUN apt-get install --no-install-recommends -y \
+    apt-get upgrade -y && \
+    apt-get install --no-install-recommends -y \
     wget \
     bzip2 \
     curl \
@@ -19,14 +19,13 @@ RUN apt-get install --no-install-recommends -y \
     zlib1g-dev \
     xserver-xorg-dev \
     build-essential \
-    python-dev \
+    python3-dev \
     libxcb-dri2-0-dev \
     libxcb-xfixes0-dev \
     libxext-dev \
     libx11-xcb-dev \
-    pkg-config
-
-RUN update-alternatives --install \
+    pkg-config && \
+    update-alternatives --install \
         /usr/bin/llvm-config       llvm-config      /usr/bin/llvm-config-6.0  200 \
 --slave /usr/bin/llvm-ar           llvm-ar          /usr/bin/llvm-ar-6.0 \
 --slave /usr/bin/llvm-as           llvm-as          /usr/bin/llvm-as-6.0 \
@@ -47,9 +46,8 @@ RUN update-alternatives --install \
 --slave /usr/bin/llvm-size         llvm-size        /usr/bin/llvm-size-6.0 \
 --slave /usr/bin/llvm-stress       llvm-stress      /usr/bin/llvm-stress-6.0 \
 --slave /usr/bin/llvm-symbolizer   llvm-symbolizer  /usr/bin/llvm-symbolizer-6.0 \
---slave /usr/bin/llvm-tblgen       llvm-tblgen      /usr/bin/llvm-tblgen-6.0
-
-RUN set -xe; \
+--slave /usr/bin/llvm-tblgen       llvm-tblgen      /usr/bin/llvm-tblgen-6.0 && \
+    set -xe; \
     mkdir -p /var/tmp/build; \
     cd /var/tmp/build; \
     wget -q --no-check-certificate "https://mesa.freedesktop.org/archive/mesa-18.0.1.tar.gz"; \
@@ -70,9 +68,8 @@ RUN set -xe; \
             libxext-dev \
             libx11-xcb-dev \
             libxcb-xfixes0-dev \
-            libxcb-dri2-0-dev
-
-RUN sudo apt autoremove -y --purge && sudo apt clean
+            libxcb-dri2-0-dev && \
+    apt autoremove -y --purge && sudo apt clean
 
 # Setup our environment variables.
 ENV XVFB_WHD="1920x1080x24"\
