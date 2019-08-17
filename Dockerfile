@@ -15,6 +15,7 @@ RUN apt-get update && \
     git \
     sudo \
     vim \
+    python \
     llvm-6.0-dev \
     zlib1g-dev \
     xserver-xorg-dev \
@@ -63,7 +64,8 @@ RUN apt-get update && \
             build-essential \
             zlib1g-dev \
             xserver-xorg-dev \
-            python-dev \
+            python3-dev \
+            python \
             pkg-config \
             libxext-dev \
             libx11-xcb-dev \
